@@ -85,7 +85,7 @@ def updateBook(request, bookId):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect(f"/{bookId}/show")
+            return redirect("/"+{bookId}+"/show")
         else:
             thisBook = Book.objects.get(id=bookId)
             user = User.objects.get(id=request.session['userId'])
