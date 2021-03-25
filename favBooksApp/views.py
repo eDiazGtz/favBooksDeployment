@@ -85,7 +85,7 @@ def updateBook(request, bookId):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect("/"+{bookId}+"/show")
+            return redirect(f"/{bookId}/show")
         else:
             thisBook = Book.objects.get(id=bookId)
             user = User.objects.get(id=request.session['userId'])
@@ -93,7 +93,7 @@ def updateBook(request, bookId):
                 thisBook.title = request.POST['title']
                 thisBook.description = request.POST['description']
                 thisBook.save()
-    return redirect("/"+{bookId}+"/show")
+    return redirect(f"/{bookId}/show")
 
 def deleteBook(request, bookId):
     if('userId' not in request.session):
@@ -116,7 +116,7 @@ def favOrUnfavBook(request, bookId):
         thisBook.usersWhoFavorite.remove(user)
     else:
         thisBook.usersWhoFavorite.add(user)
-    return redirect("/"+{bookId}+"/show")
+    return redirect(f'/{bookId}/show')
 
 def myBooks(request, userId):
     if('userId' not in request.session):
