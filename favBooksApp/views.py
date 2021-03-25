@@ -93,7 +93,7 @@ def updateBook(request, bookId):
                 thisBook.title = request.POST['title']
                 thisBook.description = request.POST['description']
                 thisBook.save()
-    return redirect(f"/{bookId}/show")
+    return redirect("/"+{bookId}+"/show")
 
 def deleteBook(request, bookId):
     if('userId' not in request.session):
@@ -116,7 +116,7 @@ def favOrUnfavBook(request, bookId):
         thisBook.usersWhoFavorite.remove(user)
     else:
         thisBook.usersWhoFavorite.add(user)
-    return redirect(f'/{bookId}/show')
+    return redirect("/"+{bookId}+"/show")
 
 def myBooks(request, userId):
     if('userId' not in request.session):
